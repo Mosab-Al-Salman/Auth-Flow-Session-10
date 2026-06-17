@@ -1,31 +1,21 @@
-import Footer from "../components/Footer";
+import { Helmet } from 'react-helmet-async';
 import Header from "../components/Header";
 import Content from "../components/Content";
-import { Helmet } from 'react-helmet-async';
+import Footer from "../components/Footer";
 
-const Fromework = () => {
+const Basic = () => {
   return (
-        <>
-        <Helmet>
-        <title>Fromework Page</title>
-
-                      <style type="text/css">{`
-          body {
-            background-color: blue;
-          }
-
-          p {
-            font-size: 12px;
-          }
-        `}</style>
-        
+    <>
+      <Helmet>
+        <title>Frameworks Page</title>
       </Helmet>
 
-  <Header/>
-  <Content data="Fromework" />
-  <Footer/>
-</>
+      <Header />
+      <main className="page-wrapper">
+        <Content data="Frameworks" />
+      </main>
+      <Footer />
+    </>
   );
 }
-
-export default Fromework;
+export default Basic;

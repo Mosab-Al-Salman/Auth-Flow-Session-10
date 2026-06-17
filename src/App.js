@@ -1,47 +1,24 @@
-function App() {
-  return (
-    <>
-  <header className="header">
-    <h1>Web Dev Roadmap</h1>
-    <ul className="flex">
-      <li className="main-list">
-        <a className="main-link" href="www">
-          Basics
-        </a>
-      </li>
-      <li className="main-list">
-        <a className="main-link" href="www">
-          Frameworks
-        </a>
-      </li>
-      <li className="main-list">
-        <a className="main-link" href="www">
-          Tips
-        </a>
-      </li>
-    </ul>
-  </header>
-  <main className="hero-section">
-    <div className="hero-text">
-      <h2>Start your journey with Web Development</h2>
-      <p>Learn step-by-step and build real projects.</p>
-      <a href="#" className="hero-btn">
-        Start Learning
-      </a>
-    </div>
-    <img
-      src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop"
-      alt=""
-      className="hero-img"
-    />
-  </main>
-  <footer>
-    React Course - Level 1 (session 1)
-    <span>🧡</span>
-  </footer>
-</>
+import { useContext } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Data } from "./context/ThemeContext"; 
+import Home from './pages/Home';
+import Basic from './pages/Basic';
+import Fromework from './pages/Fromework';
+import Tips from './pages/Tips';
 
+const router = createBrowserRouter([
+  { path: "/", element: <Home /> },
+  { path: "/Basic", element: <Basic /> },
+  { path: "/Fromework", element: <Fromework /> },
+  { path: "/Tips", element: <Tips /> },
+]);
+
+function App() {
+  const { theme } = useContext(Data);
+  return (
+    <div className={theme}>
+      <RouterProvider router={router} />
+    </div>
   );
 }
-
 export default App;

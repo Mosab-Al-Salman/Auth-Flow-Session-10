@@ -1,39 +1,21 @@
-import Footer from "../components/Footer";
+import { Helmet } from 'react-helmet-async';
 import Header from "../components/Header";
 import Content from "../components/Content";
-import { Helmet } from 'react-helmet-async';
+import Footer from "../components/Footer";
 
-
-const Tips = () => {
+const Basic = () => {
   return (
-        <>
-        <Helmet>
-  <title>Tips Page</title>
+    <>
+      <Helmet>
+        <title>Tips Page</title>
+      </Helmet>
 
-  <style>{`
-    body {
-      background: linear-gradient(
-        135deg,
-        #f8fafc 0%,
-        #e2e8f0 100%
-      );
-    }
-
-    h1 {
-      color: #0f172a;
-      font-size: 3rem;
-      font-weight: 700;
-      text-align: center;
-    }
-  `}</style>
-</Helmet>
-
-      
-  <Header/>
-  <Content data="Tips" />
-  <Footer/>
-</>
+      <Header />
+      <main className="page-wrapper">
+        <Content data="Tips" />
+      </main>
+      <Footer />
+    </>
   );
 }
-
-export default Tips;
+export default Basic;
