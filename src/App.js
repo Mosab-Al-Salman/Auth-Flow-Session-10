@@ -5,12 +5,16 @@ import Home from './pages/Home';
 import Basic from './pages/Basic';
 import Fromework from './pages/Fromework';
 import Tips from './pages/Tips';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  { path: "/Basic", element: <Basic /> },
-  { path: "/Fromework", element: <Fromework /> },
-  { path: "/Tips", element: <Tips /> },
+  { path: "/basic", element: <Basic /> },
+  { path: "/fromework", element: <Fromework /> },
+  { path: "/tips", element: <Tips /> },
+  { path: "/signin", element: <SignIn /> }, 
+  { path: "/signup", element: <SignUp /> }, 
 ]);
 
 function App() {

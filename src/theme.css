@@ -1,27 +1,108 @@
+.light {
+  background-color: #ffffff;
+  color: #222222;
+  min-height: 100vh;
+  transition: 0.3s;
+}
+
+.light h2 {
+  color: #222222;
+}
+
+.dark {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  min-height: 100vh;
+  transition: 0.3s;
+}
+
+.dark h2 {
+  color: #ffffff !important;
+}
+
 .theme {
   display: flex; align-items: center; justify-content: center;
   width: 42px; height: 42px; border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background-color: transparent; color: #fff;
-  cursor: pointer; font-size: 1.2rem; transition: all 0.3s ease;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  background-color: transparent; cursor: pointer;
+  font-size: 1.2rem; transition: all 0.3s ease;
 }
-.theme:hover { 
-  background-color: rgba(255, 255, 255, 0.15); 
-  transform: rotate(20deg); 
-}
-.theme:active { transform: scale(0.95); }
-
-.dark { 
-  background-color: #121212 !important; 
-  color: #ffffff !important; 
-  min-height: 100vh;
- }
-.dark main { color: #e0e0e0; }
-.dark h2 { color: #ffffff; }
 
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.page-wrapper h2 {
+  font-size: 1.5rem;
+}
+
+.main-link {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+  text-decoration: none;
+  color: inherit;
+}
+
+.auth-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form h2, .auth-form p {
+  color: #222222 !important;
+  margin: 0;
+}
+
+.auth-form input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  color: #000000 !important; 
+  background-color: #ffffff !important;
+}
+
+.submit-btn {
+  background-color: #00a8e8;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.link-text {
+  text-align: center;
+  color: #00a8e8;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.dark .auth-form {
+  background-color: #1e1e1e;
+}
+
+.dark .auth-form h2, .dark .auth-form p {
+  color: #ffffff !important;
+}
+
+.dark .auth-form input {
+  background-color: #333 !important;
+  color: #ffffff !important;
 }

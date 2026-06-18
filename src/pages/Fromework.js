@@ -3,19 +3,19 @@ import Header from "../components/Header";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 
-const Basic = () => {
+const Framework = () => {
   return (
     <>
       <Helmet>
-        <title>Frameworks Page</title>
+        <title>Fromework Page</title>
       </Helmet>
 
       <Header />
       <main className="page-wrapper">
-        <Content data="Frameworks" />
+        <Content data="Fromework" />
       </main>
       <Footer />
     </>
   );
 }
-export default Basic;
+export default Framework;

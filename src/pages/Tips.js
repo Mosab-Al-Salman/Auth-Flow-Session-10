@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 
-const Basic = () => {
+const Tips = () => {
   return (
     <>
       <Helmet>
@@ -18,4 +18,4 @@ const Basic = () => {
     </>
   );
 }
-export default Basic;
+export default Tips;

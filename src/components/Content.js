@@ -1,10 +1,10 @@
-import "./Content.css"
+import "./Content.css";
 
-const Content = ({data}) => {
+const Content = ({ data }) => {
   return (
-    <main className="page-content">
-      <p>Welcome to the {data} section.</p>
-    </main>
+    <div className="page-content">
+      <h2>Welcome to the {data} section.</h2>
+    </div>
   );
 }
 
