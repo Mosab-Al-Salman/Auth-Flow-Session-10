@@ -106,3 +106,44 @@
   background-color: #333 !important;
   color: #ffffff !important;
 }
+
+.error-message {
+  color: #d93025;
+  background-color: #fce8e6;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.home-main {
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-box {
+  text-align: center;
+  padding: 30px;
+}
+
+.auth-box h2 {
+  color: #333;
+}
+
+.auth-box p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.auth-box a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-box a:hover {
+  text-decoration: underline;
+}
