@@ -1,65 +1,146 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+
+import { auth } from "../firebase/config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import "./SignIn.css";
+
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
+
+  const [showReset, setShowReset] = useState(false);
   const [error, setError] = useState(false);
+
   const [messageError, setMessageError] = useState("");
-  const navigate = useNavigate();
+  const [messageSuccess, setMessageSuccess] = useState("");
+
 
   const handleSignIn = (e) => {
     e.preventDefault();
+
     setError(false);
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => navigate("/"))
-      .catch((error) => {
-        const errorCode = error.code;
+      .catch(() => {
         setError(true);
-
-        switch (errorCode) {
-          case "auth/invalid-email":
-            setMessageError("البريد الإلكتروني غير صحيح.");
-            break;
-          case "auth/invalid-credential":
-            setMessageError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
-            break;
-          case "auth/too-many-requests":
-            setMessageError("تم تعطيل الحساب مؤقتاً، حاول لاحقاً.");
-            break;
-          case "auth/missing-password":
-            setMessageError("يجب إدخال كلمة المرور.");
-            break;
-          default:
-            setMessageError("حدث خطأ ما، يرجى المحاولة مرة أخرى.");
-            break;
-        }
+        setMessageError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
       });
   };
+
+
+  const handleResetPassword = () => {
+    setError(false);
+    setMessageError("");
+    setMessageSuccess("");
+
+    sendPasswordResetEmail(auth, resetEmail)
+      .then(() => {
+        setMessageSuccess(
+          "تم إرسال رابط تغيير كلمة المرور إلى بريدك الإلكتروني."
+        );
+      })
+      .catch(() => {
+        setError(true);
+        setMessageError("حدث خطأ، تأكد من البريد الإلكتروني.");
+      });
+  };
+
 
   return (
     <>
       <Header />
+
       <main className="page-wrapper">
-        <form className="auth-form" onSubmit={handleSignIn}>
-          <h2>Sign In</h2>
+        {!showReset ? (
+          <form className="auth-form" onSubmit={handleSignIn}>
+            <h2>Sign In</h2>
 
-          {error && <p className="error-message">{messageError}</p>}
+            {error && (
+              <p className="error-message">{messageError}</p>
+            )}
 
-          <input type="email" onChange={(e) => setEmail(e.target.value)} required placeholder="Email" />
-          <input type="password" onChange={(e) => setPassword(e.target.value)} required placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-          <button type="submit" className="submit-btn">Sign In</button>
-        </form>
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <button type="submit" className="submit-btn">
+              Sign In
+            </button>
+
+            <p
+              className="link-text"
+              onClick={() => setShowReset(true)}
+            >
+              Forgot Password?
+            </p>
+          </form>
+        ) : (
+          <form
+            className="auth-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleResetPassword();
+            }}
+          >
+            <div className="reset-header">
+              <h2>Reset Password</h2>
+
+              <button
+                type="button"
+                className="close-btn"
+                onClick={() => setShowReset(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            {error && (
+              <p className="error-message">{messageError}</p>
+            )}
+
+            {messageSuccess && (
+              <p className="success-message">{messageSuccess}</p>
+            )}
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              onChange={(e) => setResetEmail(e.target.value)}
+              required
+            />
+
+            <button type="submit" className="submit-btn">
+              Reset Password
+            </button>
+          </form>
+        )}
       </main>
+
       <Footer />
     </>
   );
 };
+
 
 export default SignIn;

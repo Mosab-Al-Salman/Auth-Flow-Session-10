@@ -1,0 +1,59 @@
+/* Reset Password */
+
+.reset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: #ff4757;
+}
+
+.link-text {
+  color: #00a8e8;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.success-message,
+.error-message {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.light .close-btn {
+  color: #222;
+}
+
+.dark .close-btn {
+  color: white;
+}
+
+.light .success-message {
+  color: green;
+}
+
+.dark .success-message {
+  color: #4ade80;
+}
+
+.light .error-message {
+  color: red;
+}
+
+.dark .error-message {
+  color: #ff6b6b;
+}

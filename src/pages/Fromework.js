@@ -1,34 +1,67 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
 import Header from "../components/Header";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
-import { auth } from "../firebase/config";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from "react-router-dom";
 
 const Framework = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  if (loading) return <div className="loading">Loading...</div>;
+  useEffect(() => {
+    if (!user && !loading) {
+      navigate("/");
+    }
 
-  return (
-    <>
-      <Helmet><title>Framework Page</title></Helmet>
-      <Header />
-      
-      <main className="page-wrapper">
-        {user ? (
+    if (user && !user.emailVerified) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
+
+  if (loading) {
+    return (
+      <div>
+        <Header />
+        <main>
+          <p>Initialising User...</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Header />
+        <main>
+          <p>Error: {error.message}</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  //if (loading) return <div className="loading">Loading...</div>;
+  if (user && user.emailVerified) {
+    return (
+      <>
+        <Helmet>
+          <title>Framework Page</title>
+        </Helmet>
+        <Header />
+
+        <main className="page-wrapper">
           <Content data="Framework" />
-        ) : (
-          <div className="auth-box">
-            <h2>Welcome to our platform</h2>
-            <p>Please <Link to="/signin">Sign in</Link> to continue.</p>
-          </div>
-        )}
-      </main>
-      
-      <Footer />
-    </>
-  );
-}
+        </main>
+
+        <Footer />
+      </>
+    );
+  }
+};
+
 export default Framework;
